@@ -2,13 +2,14 @@
 #include "rust.hpp"
 
 int main() {
-    // Vect i = Vect(10, 2, 3);
-    // Vect j = Vect(2, 3, 4);
-    Vect* i = _vect_new(10, 2, 3);
-    Vect* j = _vect_new(2, 3, 4);
+    Vect i = Vect(10, 2, 3);
+    Vect j = Vect(2, 4, 4);
+    
+    Vect k = i.add(j);
 
-    Vect* k = _add(i, j);
-    std::cout << "X val: " << _getX(k) << "\n"; 
+    k.print();
+
+    printf("dot: %f", k.dot(k));
 
     return 0;
 }

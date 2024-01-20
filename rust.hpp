@@ -3,34 +3,44 @@
 
 #include <iostream>
 
-typedef struct Vect Vect;
+typedef struct Vect_Rust Vect_Rust;
 
-extern "C" Vect* _vect_new(int x, int y, int z);
+extern "C" Vect_Rust* _vect_new(float x, float y, float z);
 
-extern "C" int _getX(Vect* vect);
+extern "C" float _getX(Vect_Rust* vect);
 
-extern "C" void _setX(Vect* vect, int value);
+extern "C" void _setX(Vect_Rust* vect, float value);
 
-extern "C" void _vectFree(Vect* vect);
+extern "C" void _vectFree(Vect_Rust* vect);
 
-extern "C" Vect* _add(Vect* v1, Vect* v2);
+extern "C" Vect_Rust* _add(Vect_Rust* v1, Vect_Rust* v2);
 
-// struct Vect {
+extern "C" void _print(Vect_Rust* vect);
 
-//     Vect* v;
+extern "C" float _dot_prod(Vect_Rust* v1, Vect_Rust* v2);
 
-//     Vect(int x, int y, int z) { v = _vect_new(x, y, z); }
+struct Vect {
 
-//     int getX() { return _getX(v); }    
+    Vect_Rust* v;
 
-//     void setX(int value) { _setX(v, value); }
+    Vect(float x, float y, float z) : v(_vect_new(x, y, z)) {}
 
-//     Vect* add(Vect vect) { return _add(v, &vect); }
+    Vect(Vect_Rust* v) : v(v) {}
 
-//     void free() { _vectFree(v); }
+    int getX() { return _getX(v); }    
 
+    void setX(int value) { _setX(v, value); }
+
+    Vect add(Vect vect) { return Vect(_add(v, vect.v)); }
+
+    void free() { _vectFree(v); }
+
+    void print() {_print(v);}
+
+    float dot(Vect vect) { return _dot_prod(v, vect.v); }
     
-// };
+
+};
 
 
 
