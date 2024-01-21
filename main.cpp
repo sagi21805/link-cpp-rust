@@ -11,5 +11,14 @@ int main() {
 
     printf("dot: %f", k.dot(k));
 
+    int size = 5;
+
+    int32_t p[size] = {1, 3, 4, 54, 5};
+
+    print_array(p, size);
+    
+    i.free();
+    k.free();
+    j.free();
     return 0;
 }
