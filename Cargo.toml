@@ -9,4 +9,4 @@ edition = "2021"
 
 [lib]
 name = "vect"
-crate-type = ["staticlib"]
+crate-type = ["cdylib"] # ["staticlib"] for a static library.
