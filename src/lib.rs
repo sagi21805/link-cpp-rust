@@ -79,3 +79,4 @@ pub extern "C" fn printS(instance: *mut S){
     println!("X is {}, Y is {}", instance.x, instance.y);
     instance.x += 1;
 }
+
