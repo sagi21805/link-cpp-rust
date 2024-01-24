@@ -47,6 +47,7 @@ pub extern "C" fn _print(vect: *const Vect){
     println!("x: {}, y: {}, z: {}", vect.x, vect.y, vect.z);
 }
 
+use core::slice;
 use std::os::raw::c_int;
 
 
@@ -65,18 +66,19 @@ pub extern "C" fn print_array(ptr: *const c_int, len: usize){
 }
 
 #[repr(C)]
-pub struct S {
+pub struct Point {
     x: i32,
     y: i32
 }
 
 #[no_mangle]
-pub extern "C" fn printS(instance: *mut S){
+pub extern "C" fn printPoints(instance: *mut Point, size: usize){
     println!("HERE");
-    let instance: &mut S = unsafe { &mut *instance };
+    let slice: &mut [Point] = unsafe { std::slice::from_raw_parts_mut(instance, size) };
     // let v2: & mut S = unsafe { &*v2 };
 
-    println!("X is {}, Y is {}", instance.x, instance.y);
-    instance.x += 1;
+    for p in slice {
+        println!("[x: {}, y: {}]", p.x, p.y);
+    }
 }
 
