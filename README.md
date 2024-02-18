@@ -1,0 +1,1 @@
+This repo made for easy link between rust and c and how to do that.
